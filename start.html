@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ScarletCTF 2026 | Initialization</title>
+    <link rel="stylesheet" href="./src/start.css">
+</head>
+<body>
+    <div class="hacker-overlay"></div>
+    
+    <div id="start-screen" class="active-scene">
+        <div class="center-content">
+            <h1 class="glitch-text">SCARLET CTF 2026</h1>
+            <button id="start-btn" class="btn-primary" onclick="startIntro()">START CHALLENGE INSTANCE</button>
+        </div>
+    </div>
+
+    <div id="intro-scene" style="display: none;">
+        <div class="hacker-overlay"></div>
+        <div class="dos-box">
+            <div class="dos-header">Microloft(R) MS-DOS(R) Version 5.00</div>
+            <div id="typewriter-container"></div> 
+            <div class="dos-footer">Reading memory_sectors...</div>
+        </div>
+    </div>
+
+    <script src="./src/start.js"></script>
+</body>
+</html>

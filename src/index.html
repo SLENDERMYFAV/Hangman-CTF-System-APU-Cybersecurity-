@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScarletCTF 2026 | Hub</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="background-circuit"></div>
+
+    <div id="challenge-hub">
+        <div class="main-hud-box hud-frame collapsed" id="hudBox">
+            
+            <div class="sidebar">
+                <h2 class="red-neon-text">OPERATOR: SUREEN & DIVA</h2>
+                <div class="timer-container">
+                    <span id="countdown-timer">05:00</span>
+                </div>
+                <div class="stats">
+                    <p class="lifeline-header">LIFELINES: <span id="life-text">5</span> / 5</p>
+                    <div class="heart-meter" id="heartMeter">
+                        <img src="../image/heart.png" class="hp-heart" id="h1">
+                        <img src="../image/heart.png" class="hp-heart" id="h2">
+                        <img src="../image/heart.png" class="hp-heart" id="h3">
+                        <img src="../image/heart.png" class="hp-heart" id="h4">
+                        <img src="../image/heart.png" class="hp-heart" id="h5">
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <h3 class="red-neon-label">CHALLENGE QUESTION</h3>
+                    <p class="question-text">Validate the adjacency constraints for the "Coloring Fraud" graph. Can you identify the valid flag sequence?</p>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn-hud" onclick="showModal('sol-modal')">VIEW CHAL.PY</button>
+                    <button id="terminal-toggle" class="btn-hud inactive" onclick="toggleTerminal()">CHALLENGE TERMINAL</button>
+                </div>
+            </div>
+
+            <div class="terminal-container">
+                <div id="terminal-history">
+                    <p>> [SYSTEM]: Fraud Protocol Active.</p>
+                    <p>> [SYSTEM]: Awaiting solver input...</p>
+                </div>
+                <div class="input-area">
+                    <span class="prompt">guest@fraud:~$</span>
+                    <input type="text" id="cli-input" autofocus autocomplete="off">
+                    <button class="btn-execute" id="solver-btn" onclick="checkInput()">ENTER FLAG</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sol-modal" class="modal">
+        <div class="modal-content">
+            <h3 class="red-neon-text">SOURCE: CHAL.PY</h3>
+            <pre class="code-block">
+import hashlib
+
+# Adjacency Constraints: Nodes cannot share colors with neighbors
+# [cite: 67, 68]
+adj_graph = {
+    'Node_A': ['Node_B', 'Node_C'],
+    'Node_B': ['Node_A', 'Node_D'],
+    'Node_C': ['Node_A', 'Node_D'],
+    'Node_D': ['Node_B', 'Node_C']
+}
+
+def validate_coloring(user_input):
+    # Validation logic structure [cite: 90, 118]
+    for node, neighbors in adj_graph.items():
+        for neighbor in neighbors:
+            if user_input[node] == user_input[neighbor]:
+                return False
+    return True
+
+# Encrypted Payload [cite: 72, 106]
+def reveal_flag():
+    key = "JIGSAW_SECRET"
+    encrypted = [43, 57, 50, 16, 21, 17, 36, 62, 55, 28, 58, 36, 58, 35, 58, 24, 57, 36, 57, 62, 63, 44, 48, 47]
+    return "".join(chr(b ^ ord(key[i % len(key)])) for i, b in enumerate(encrypted))
+            </pre>
+            <button class="btn-close" onclick="closeModal('sol-modal')">EXIT CODE</button>
+        </div>
+    </div>
+
+    <div id="video-modal" class="modal">
+        <video id="invalid-player" src="../video/invalid.mp4"></video>
+    </div>
+    <div id="success-modal" class="modal">
+        <video id="success-player" src="../video/success.mp4"></video>
+    </div>
+
+    <script src="indexscript.js"></script>
+</body>
+</html>

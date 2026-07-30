@@ -1,0 +1,132 @@
+/* 1. GLOBAL BACKGROUND & OVERLAY */
+body {
+    background: #000 url('../image/anonymous.gif') no-repeat center center fixed;
+    background-size: cover;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.hacker-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.75); /* Deep eerie dimming */
+    z-index: 1;
+}
+
+/* 2. START SCREEN CENTER CONTENT */
+.center-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.glitch-text {
+    font-size: 3.5em;
+    color: #00ff41;
+    text-shadow: 0 0 15px #00ff41;
+    margin-bottom: 30px;
+    letter-spacing: 5px;
+}
+
+.btn-primary {
+    background: #fff;
+    color: #000;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px #00ff41;
+    transition: 0.3s;
+}
+
+/* 3. THE DOS TERMINAL BOX (Intro Scene) */
+#intro-scene {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: none; /* Controlled by start.js */
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+/* THE DOS TERMINAL BOX */
+.dos-box {
+    position: relative;
+    width: 85%;
+    max-width: 900px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.92); /* Slightly transparent to see Anonymous mask */
+    border: 2px solid #ff4500; 
+    box-shadow: 0 0 20px #ff0000, inset 0 0 15px rgba(255, 69, 0, 0.3);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+
+.dos-header {
+    font-size: 0.9em;
+    color: #ff8c00;
+    border-bottom: 1px solid rgba(255, 69, 0, 0.5);
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* THE NEON TYPEWRITER TEXT */
+#typewriter-container {
+    flex-grow: 1;
+    font-size: 1.9em;
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: left;
+    
+    /* Neon Gradient Fix */
+    background: linear-gradient(to bottom, #ff0000, #ff8c00);
+    background-clip: text; 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Fallback for older browsers */
+    color: #ff4500; 
+
+    /* Neon Glow Effect */
+    filter: drop-shadow(0 0 5px rgba(255, 69, 0, 0.8));
+    
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+/* Custom Scrollbar for the Neon Box */
+#typewriter-container::-webkit-scrollbar { width: 5px; }
+#typewriter-container::-webkit-scrollbar-thumb { background: #ff4500; border-radius: 10px; }
+
+.dos-footer {
+    color: #ff8c00; /* Orange Tint Footer */
+    font-size: 0.8em;
+    margin-top: 15px;
+    opacity: 0.8;
+    text-shadow: 0 0 5px #ff4500;
+}
+
+/* 5. ANIMATIONS & UTILITIES */
+.hidden-scene { display: none !important; }
+
+@keyframes intenseGlitch {
+    0% { transform: translate(0); text-shadow: none; }
+    2% { transform: translate(-5px, 2px); background: #ff0000; color: #fff; text-shadow: 2px 0 #fff; }
+    4% { transform: translate(5px, -2px); text-shadow: -2px 0 #fff; }
+    6% { transform: translate(0); background: #fff; color: #000; }
+}
+
+.glitch-active { 
+    animation: intenseGlitch 0.4s ease-in-out; 
+}

@@ -1,0 +1,7 @@
+STEP BY STEP
+___________________________________________________
+
+
+
+
+just run start.html using live server and ur done :P
